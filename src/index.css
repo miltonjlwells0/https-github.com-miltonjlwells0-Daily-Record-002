@@ -1,0 +1,727 @@
+@import "tailwindcss";
+
+@theme {
+  --color-nat-bg: var(--theme-bg, #FDFCFB);
+  --color-nat-text: var(--theme-text, #434343);
+  --color-nat-accent-1: var(--theme-accent-1, #D4A373);
+  --color-nat-accent-2: var(--theme-accent-2, #8B9A8A);
+  --color-nat-accent-3: var(--theme-accent-3, #A3B18A);
+  --color-nat-accent-4: var(--theme-accent-4, #BC6C25);
+  --color-nat-light-1: var(--theme-light-1, #F4F1ED);
+  --color-nat-light-2: var(--theme-light-2, #FAFAF8);
+  --color-nat-border: var(--theme-border, #E5E5E5);
+}
+
+:root, [data-theme="gildedsilk"] {
+  --theme-bg: #FAF7F2;
+  --theme-text: #141414;
+  --theme-accent-1: #C9A45C;
+  --theme-accent-2: #141414;
+  --theme-accent-3: #947128;
+  --theme-accent-4: #D8BA7A;
+  --theme-light-1: #F4EFE6;
+  --theme-light-2: #FCFAF6;
+  --theme-border: rgba(201, 164, 92, 0.45);
+  --theme-card-bg: rgba(251, 248, 242, 0.95);
+}
+
+[data-theme="gildedsilk"] .app-theme-bg-layer {
+  background-image: url('/src/assets/images/gilded_silk_bg_1787011408620.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: block !important;
+}
+
+/* Gilded Silk Header: Deep Obsidian with Warm Ivory & Champagne Gold Trim */
+[data-theme="gildedsilk"] header {
+  background-color: #121212 !important;
+  color: #FAF7F2 !important;
+  border-bottom: 1.5px solid rgba(201, 164, 92, 0.5) !important;
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="gildedsilk"] header button {
+  background-color: #1C1C1C !important;
+  color: #FAF7F2 !important;
+  border-color: rgba(201, 164, 92, 0.45) !important;
+}
+
+[data-theme="gildedsilk"] header button:hover {
+  background-color: #282828 !important;
+  border-color: #C9A45C !important;
+  color: #C9A45C !important;
+}
+
+[data-theme="gildedsilk"] header h1,
+[data-theme="gildedsilk"] header span {
+  color: #FAF7F2 !important;
+}
+
+[data-theme="gildedsilk"] header .text-nat-accent-1 {
+  color: #C9A45C !important;
+}
+
+/* Gilded Silk Sidebar: Deep Obsidian with Gold Medallions & Accents */
+[data-theme="gildedsilk"] aside {
+  background-color: #121212 !important;
+  border-right: 1.5px solid rgba(201, 164, 92, 0.4) !important;
+  box-shadow: 4px 0 28px -2px rgba(0, 0, 0, 0.35) !important;
+}
+
+[data-theme="gildedsilk"] aside h1 {
+  color: #FAF7F2 !important;
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif !important;
+  letter-spacing: 0.05em !important;
+}
+
+[data-theme="gildedsilk"] aside h2 {
+  color: #C9A45C !important;
+  letter-spacing: 0.15em !important;
+  font-size: 10px !important;
+}
+
+[data-theme="gildedsilk"] aside p {
+  color: #D8BA7A !important;
+}
+
+[data-theme="gildedsilk"] aside nav button {
+  color: #FAF7F2 !important;
+  border: 1px solid transparent !important;
+}
+
+[data-theme="gildedsilk"] aside nav button:hover {
+  background-color: rgba(201, 164, 92, 0.15) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(201, 164, 92, 0.35) !important;
+}
+
+[data-theme="gildedsilk"] aside nav button svg {
+  color: #C9A45C !important;
+}
+
+[data-theme="gildedsilk"] aside nav button.bg-nat-light-1,
+[data-theme="gildedsilk"] aside nav button.font-bold {
+  background-color: rgba(201, 164, 92, 0.22) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(201, 164, 92, 0.6) !important;
+  box-shadow: 0 2px 14px rgba(201, 164, 92, 0.25) !important;
+}
+
+/* Gilded Silk Cards: Warm Ivory Floating Cards & Dark Obsidian Accent Cards */
+[data-theme="gildedsilk"] .glass,
+[data-theme="gildedsilk"] .bg-nat-light-2,
+[data-theme="gildedsilk"] .bg-white\/95,
+[data-theme="gildedsilk"] .bg-white\/90,
+[data-theme="gildedsilk"] .bg-white\/80,
+[data-theme="gildedsilk"] .bg-white\/70,
+[data-theme="gildedsilk"] .bg-white\/60,
+[data-theme="gildedsilk"] .bg-white\/50,
+[data-theme="gildedsilk"] .bg-white\/40,
+[data-theme="gildedsilk"] .bg-white {
+  background-color: rgba(251, 248, 242, 0.96) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(201, 164, 92, 0.42) !important;
+  color: #141414 !important;
+}
+
+[data-theme="gildedsilk"] .bg-nat-light-1 {
+  background-color: #F4EFE6 !important;
+  border-color: rgba(201, 164, 92, 0.35) !important;
+}
+
+[data-theme="gildedsilk"] .shadow-2xs,
+[data-theme="gildedsilk"] .shadow-xs,
+[data-theme="gildedsilk"] .shadow-sm,
+[data-theme="gildedsilk"] .shadow-md,
+[data-theme="gildedsilk"] .shadow-lg {
+  box-shadow: 0 6px 28px -4px rgba(201, 164, 92, 0.18), 0 2px 8px -1px rgba(17, 17, 17, 0.08) !important;
+}
+
+[data-theme="gildedsilk"] h1,
+[data-theme="gildedsilk"] h2,
+[data-theme="gildedsilk"] h3,
+[data-theme="gildedsilk"] .serif {
+  font-family: 'Cormorant Garamond', 'Playfair Display', 'Libre Baskerville', Georgia, serif;
+}
+
+[data-theme="gildedsilk"] main {
+  background-color: transparent !important;
+}
+
+[data-theme="obsidianelite"] {
+  --theme-bg: #F7F3EA;
+  --theme-text: #111111;
+  --theme-accent-1: #C9A45C;
+  --theme-accent-2: #111111;
+  --theme-accent-3: #8E6F33;
+  --theme-accent-4: #D8BA7A;
+  --theme-light-1: #EFE8DA;
+  --theme-light-2: #FAF7F0;
+  --theme-border: rgba(201, 164, 92, 0.38);
+  --theme-card-bg: rgba(247, 243, 234, 0.94);
+}
+
+[data-theme="obsidianelite"] .app-theme-bg-layer {
+  background-image: url('/obsidian_elite_bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: block !important;
+}
+
+/* Obsidian Élite Header: Deep Obsidian with Warm Ivory & Champagne Gold Trim */
+[data-theme="obsidianelite"] header {
+  background-color: #111111 !important;
+  color: #F7F3EA !important;
+  border-bottom: 1px solid rgba(201, 164, 92, 0.45) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35) !important;
+}
+
+[data-theme="obsidianelite"] header button {
+  background-color: #1A1A1A !important;
+  color: #F7F3EA !important;
+  border-color: rgba(201, 164, 92, 0.4) !important;
+}
+
+[data-theme="obsidianelite"] header button:hover {
+  background-color: #242424 !important;
+  border-color: #C9A45C !important;
+  color: #C9A45C !important;
+}
+
+[data-theme="obsidianelite"] header h1,
+[data-theme="obsidianelite"] header span {
+  color: #F7F3EA !important;
+}
+
+[data-theme="obsidianelite"] header .text-nat-accent-1 {
+  color: #C9A45C !important;
+}
+
+/* Obsidian Élite Navigation: Deep Obsidian with Warm Ivory & Champagne Gold Highlights */
+[data-theme="obsidianelite"] aside {
+  background-color: #111111 !important;
+  border-right: 1px solid rgba(201, 164, 92, 0.35) !important;
+  box-shadow: 4px 0 24px -2px rgba(0, 0, 0, 0.28) !important;
+}
+
+[data-theme="obsidianelite"] aside h1 {
+  color: #F7F3EA !important;
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif !important;
+}
+
+[data-theme="obsidianelite"] aside h2 {
+  color: #C9A45C !important;
+  letter-spacing: 0.12em !important;
+  font-size: 10px !important;
+}
+
+[data-theme="obsidianelite"] aside p {
+  color: #D8BA7A !important;
+}
+
+[data-theme="obsidianelite"] aside nav button {
+  color: #F7F3EA !important;
+  border: 1px solid transparent !important;
+}
+
+[data-theme="obsidianelite"] aside nav button:hover {
+  background-color: rgba(201, 164, 92, 0.12) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(201, 164, 92, 0.25) !important;
+}
+
+[data-theme="obsidianelite"] aside nav button svg {
+  color: #C9A45C !important;
+}
+
+[data-theme="obsidianelite"] aside nav button.bg-nat-light-1,
+[data-theme="obsidianelite"] aside nav button.font-bold {
+  background-color: rgba(201, 164, 92, 0.18) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(201, 164, 92, 0.5) !important;
+  box-shadow: 0 2px 12px rgba(201, 164, 92, 0.18) !important;
+}
+
+/* Obsidian Élite Cards: Ivory Luxury Cards & Subtle Gold Micro-borders */
+[data-theme="obsidianelite"] .glass,
+[data-theme="obsidianelite"] .bg-nat-light-2,
+[data-theme="obsidianelite"] .bg-white\/95,
+[data-theme="obsidianelite"] .bg-white\/90,
+[data-theme="obsidianelite"] .bg-white\/80,
+[data-theme="obsidianelite"] .bg-white\/70,
+[data-theme="obsidianelite"] .bg-white\/60,
+[data-theme="obsidianelite"] .bg-white\/50,
+[data-theme="obsidianelite"] .bg-white\/40,
+[data-theme="obsidianelite"] .bg-white {
+  background-color: rgba(247, 243, 234, 0.94) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(201, 164, 92, 0.38) !important;
+  color: #111111 !important;
+}
+
+[data-theme="obsidianelite"] .bg-nat-light-1 {
+  background-color: #EFE8DA !important;
+  border-color: rgba(201, 164, 92, 0.32) !important;
+}
+
+[data-theme="obsidianelite"] .shadow-2xs,
+[data-theme="obsidianelite"] .shadow-xs,
+[data-theme="obsidianelite"] .shadow-sm,
+[data-theme="obsidianelite"] .shadow-md,
+[data-theme="obsidianelite"] .shadow-lg {
+  box-shadow: 0 4px 22px -2px rgba(201, 164, 92, 0.14), 0 2px 8px -1px rgba(17, 17, 17, 0.06) !important;
+}
+
+[data-theme="obsidianelite"] h1,
+[data-theme="obsidianelite"] h2,
+[data-theme="obsidianelite"] h3,
+[data-theme="obsidianelite"] .serif {
+  font-family: 'Cormorant Garamond', 'Playfair Display', 'Libre Baskerville', Georgia, serif;
+}
+
+[data-theme="obsidianelite"] main {
+  background-color: transparent !important;
+}
+
+[data-theme="obsidiansilk"] {
+  --theme-bg: #FAF8F5;
+  --theme-text: #000000;
+  --theme-accent-1: #B38612;
+  --theme-accent-2: #000000;
+  --theme-accent-3: #8C6605;
+  --theme-accent-4: #D4AF37;
+  --theme-light-1: rgba(255, 255, 255, 0.45);
+  --theme-light-2: rgba(255, 255, 255, 0.35);
+  --theme-border: rgba(179, 134, 18, 0.45);
+  --theme-card-bg: rgba(255, 255, 255, 0.42);
+}
+
+[data-theme="obsidiansilk"] .app-theme-bg-layer {
+  background-image: url('/obsidian_gold_silk.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: block !important;
+}
+
+/* C2 See-Through (Ultra Translucent) Cells for obsidiansilk with high-contrast text */
+[data-theme="obsidiansilk"] main {
+  background-color: transparent !important;
+}
+
+[data-theme="obsidiansilk"] header {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(179, 134, 18, 0.4) !important;
+}
+
+[data-theme="obsidiansilk"] aside {
+  background-color: rgba(255, 255, 255, 0.70) !important;
+  backdrop-filter: blur(20px) !important;
+  border-right: 1px solid rgba(179, 134, 18, 0.35) !important;
+}
+
+[data-theme="obsidiansilk"] .glass,
+[data-theme="obsidiansilk"] .bg-nat-light-2,
+[data-theme="obsidiansilk"] .bg-nat-light-1,
+[data-theme="obsidiansilk"] .bg-white\/95,
+[data-theme="obsidiansilk"] .bg-white\/90,
+[data-theme="obsidiansilk"] .bg-white\/80,
+[data-theme="obsidiansilk"] .bg-white\/70,
+[data-theme="obsidiansilk"] .bg-white\/60,
+[data-theme="obsidiansilk"] .bg-white\/50,
+[data-theme="obsidiansilk"] .bg-white\/40,
+[data-theme="obsidiansilk"] .bg-white {
+  background-color: rgba(255, 255, 255, 0.48) !important;
+  backdrop-filter: blur(12px) !important;
+  border-color: rgba(179, 134, 18, 0.4) !important;
+}
+
+[data-theme="obsidiansilk"] tr,
+[data-theme="obsidiansilk"] th,
+[data-theme="obsidiansilk"] td,
+[data-theme="obsidiansilk"] .bg-nat-bg {
+  background-color: transparent !important;
+}
+
+[data-theme="obsidiansilk"] .shadow-2xs,
+[data-theme="obsidiansilk"] .shadow-xs,
+[data-theme="obsidiansilk"] .shadow-sm,
+[data-theme="obsidiansilk"] .shadow-md {
+  box-shadow: 0 4px 20px -2px rgba(179, 134, 18, 0.15), 0 2px 6px -1px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="luxurymarble"] {
+  --theme-bg: #FAF8F5;
+  --theme-text: #000000;
+  --theme-accent-1: #B38612;
+  --theme-accent-2: #000000;
+  --theme-accent-3: #8C6605;
+  --theme-accent-4: #D4AF37;
+  --theme-light-1: rgba(255, 255, 255, 0.85);
+  --theme-light-2: rgba(255, 255, 255, 0.95);
+  --theme-border: rgba(179, 134, 18, 0.4);
+  --theme-card-bg: rgba(255, 255, 255, 0.92);
+}
+
+[data-theme="luxurymarble"] .app-theme-bg-layer {
+  background-image: url('/luxury_gold_bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: block !important;
+}
+
+[data-theme="luxurymarble"] main {
+  background-color: transparent !important;
+}
+
+[data-theme="luxurymarble"] header {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(179, 134, 18, 0.35) !important;
+}
+
+[data-theme="luxurymarble"] aside {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(20px) !important;
+  border-right: 1px solid rgba(179, 134, 18, 0.3) !important;
+}
+
+[data-theme="luxurymarble"] .glass,
+[data-theme="luxurymarble"] .bg-nat-light-2,
+[data-theme="luxurymarble"] .bg-white\/90,
+[data-theme="luxurymarble"] .bg-white\/80 {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+[data-theme="luxurymarble"] .shadow-2xs,
+[data-theme="luxurymarble"] .shadow-xs,
+[data-theme="luxurymarble"] .shadow-sm {
+  box-shadow: 0 4px 20px -2px rgba(179, 134, 18, 0.12), 0 2px 6px -1px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="dailyrecord"] {
+  --theme-bg: #070B14;
+  --theme-text: #FFFFFF;
+  --theme-accent-1: #E6C65A;
+  --theme-accent-2: #F3CA40;
+  --theme-accent-3: #60A5FA;
+  --theme-accent-4: #FBBF24;
+  --theme-light-1: #101B2E;
+  --theme-light-2: #0B1322;
+  --theme-border: #2D4166;
+  --theme-card-bg: rgba(14, 23, 40, 0.95);
+}
+
+[data-theme="dailyrecord"] .app-theme-bg-layer {
+  background-image: url('/noir_gold_marble.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: block !important;
+}
+
+[data-theme="dailyrecord"] main {
+  background-color: transparent !important;
+}
+
+.app-wallpaper-canvas {
+  background-color: transparent !important;
+}
+
+[data-theme="oasis"] {
+  --theme-bg: #FDFCFB;
+  --theme-text: #050505;
+  --theme-accent-1: #C28952;
+  --theme-accent-2: #2D3A2C;
+  --theme-accent-3: #526343;
+  --theme-accent-4: #A85718;
+  --theme-light-1: #F4F1ED;
+  --theme-light-2: #FAFAF8;
+  --theme-border: #D1CEC7;
+  --theme-card-bg: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="lanternpeaks"] {
+  --theme-bg: #F3F8FB;
+  --theme-text: #050914;
+  --theme-accent-1: #1D4ED8;
+  --theme-accent-2: #B45309;
+  --theme-accent-3: #0F766E;
+  --theme-accent-4: #D97706;
+  --theme-light-1: #E4EFF6;
+  --theme-light-2: #F7FAFC;
+  --theme-border: #B6CDDE;
+  --theme-card-bg: rgba(255, 255, 255, 0.96);
+}
+
+[data-theme="solardune"] {
+  --theme-bg: #FAF6F0;
+  --theme-text: #000000;
+  --theme-accent-1: #D97706;
+  --theme-accent-2: #000000;
+  --theme-accent-3: #92400E;
+  --theme-accent-4: #B45309;
+  --theme-light-1: #F2EBE0;
+  --theme-light-2: #FAF7F2;
+  --theme-border: #D8C7B0;
+  --theme-card-bg: rgba(255, 255, 255, 0.96);
+}
+
+[data-theme="auric"] {
+  --theme-bg: #FCFCFA;
+  --theme-text: #000000;
+  --theme-accent-1: #C6951A;
+  --theme-accent-2: #000000;
+  --theme-accent-3: #99700C;
+  --theme-accent-4: #D97706;
+  --theme-light-1: #F6F3EA;
+  --theme-light-2: #FAF8F2;
+  --theme-border: #DBCB9E;
+  --theme-card-bg: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="midnight"] {
+  --theme-bg: #07090E;
+  --theme-text: #FFFFFF;
+  --theme-accent-1: #F59E0B;
+  --theme-accent-2: #60A5FA;
+  --theme-accent-3: #93C5FD;
+  --theme-accent-4: #FB7185;
+  --theme-light-1: #151A24;
+  --theme-light-2: #0F131C;
+  --theme-border: #334155;
+  --theme-card-bg: rgba(15, 19, 28, 0.95);
+}
+
+[data-theme="sand"] {
+  --theme-bg: #F8F5EE;
+  --theme-text: #000000;
+  --theme-accent-1: #B0743E;
+  --theme-accent-2: #3E382E;
+  --theme-accent-3: #6E6452;
+  --theme-accent-4: #8F4C20;
+  --theme-light-1: #EBE5D8;
+  --theme-light-2: #F2EDE2;
+  --theme-border: #CFC4B0;
+  --theme-card-bg: rgba(255, 253, 248, 0.95);
+}
+
+[data-theme="forest"] {
+  --theme-bg: #F3F7F3;
+  --theme-text: #000000;
+  --theme-accent-1: #5F834E;
+  --theme-accent-2: #1E4627;
+  --theme-accent-3: #35623E;
+  --theme-accent-4: #8C541D;
+  --theme-light-1: #E2ECE1;
+  --theme-light-2: #ECF3EB;
+  --theme-border: #B7D0B4;
+  --theme-card-bg: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="lavender"] {
+  --theme-bg: #F8F6FB;
+  --theme-text: #000000;
+  --theme-accent-1: #8B5CF6;
+  --theme-accent-2: #4C387B;
+  --theme-accent-3: #6B559E;
+  --theme-accent-4: #A855F7;
+  --theme-light-1: #EBE7F5;
+  --theme-light-2: #F3F0FA;
+  --theme-border: #C8BFDE;
+  --theme-card-bg: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="rose"] {
+  --theme-bg: #FCF6F6;
+  --theme-text: #000000;
+  --theme-accent-1: #CC5838;
+  --theme-accent-2: #6E323E;
+  --theme-accent-3: #8C4958;
+  --theme-accent-4: #B33932;
+  --theme-light-1: #F5E7E8;
+  --theme-light-2: #FAF0F1;
+  --theme-border: #DAC0C4;
+  --theme-card-bg: rgba(255, 255, 255, 0.95);
+}
+
+/* Font Styles */
+[data-font="whimsical"] body, [data-font="whimsical"] {
+  font-family: 'Quicksand', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.01em;
+}
+
+[data-font="arcane"] body, [data-font="arcane"] {
+  font-family: 'Marcellus', 'Cinzel', 'Playfair Display', Georgia, serif;
+  letter-spacing: 0.02em;
+}
+
+[data-font="regal"] body, [data-font="regal"] {
+  font-family: 'Cinzel', 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  letter-spacing: 0.015em;
+}
+
+[data-font="serif"] body, [data-font="serif"] {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+}
+
+[data-font="sans"] body, [data-font="sans"] {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+[data-font="mono"] body, [data-font="mono"] {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+[data-font="rounded"] body, [data-font="rounded"] {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: 0.01em;
+}
+
+/* Font Sizes */
+[data-font-size="sm"] {
+  font-size: 14px;
+}
+[data-font-size="base"] {
+  font-size: 16px;
+}
+[data-font-size="lg"] {
+  font-size: 17.5px;
+}
+[data-font-size="xl"] {
+  font-size: 19px;
+}
+
+/* Icon Size Scales */
+[data-icon-size="sm"] {
+  --app-icon-scale: 0.82;
+}
+[data-icon-size="base"] {
+  --app-icon-scale: 1;
+}
+[data-icon-size="lg"] {
+  --app-icon-scale: 1.25;
+}
+
+/* Emoji Scale */
+[data-emoji-scale="sm"] {
+  --app-emoji-scale: 0.82;
+}
+[data-emoji-scale="base"] {
+  --app-emoji-scale: 1;
+}
+[data-emoji-scale="lg"] {
+  --app-emoji-scale: 1.35;
+}
+
+@layer utilities {
+  .glass {
+    background: var(--theme-card-bg, rgba(255, 255, 255, 0.6));
+    border: 1px solid var(--theme-border, rgba(212, 163, 115, 0.2));
+  }
+  .serif {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* UNIVERSAL HIGH-CONTRAST & SHARP TEXT CLARITY ENGINE */
+body, [data-theme] {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure text is deep, sharp, and high-contrast */
+p, span, div, h1, h2, h3, h4, h5, h6, label, input, textarea, button, td, th {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Prevent dull/washed-out gray text by elevating opacity levels */
+.opacity-50 {
+  opacity: 0.85 !important;
+}
+
+.opacity-60,
+.opacity-65 {
+  opacity: 0.90 !important;
+}
+
+.opacity-70,
+.opacity-75 {
+  opacity: 0.95 !important;
+}
+
+/* Dark mode & Dark backgrounds: Bright, radiant high-contrast text */
+.dark,
+[data-theme="dailyrecord"],
+[data-theme="midnight"] {
+  --theme-text: #FFFFFF;
+}
+
+.dark p, 
+.dark span, 
+.dark h1, 
+.dark h2, 
+.dark h3, 
+.dark h4, 
+.dark label,
+[data-theme="dailyrecord"] p,
+[data-theme="dailyrecord"] span,
+[data-theme="dailyrecord"] h1,
+[data-theme="dailyrecord"] h2,
+[data-theme="dailyrecord"] h3,
+[data-theme="dailyrecord"] h4,
+[data-theme="dailyrecord"] label,
+[data-theme="midnight"] p,
+[data-theme="midnight"] span,
+[data-theme="midnight"] h1,
+[data-theme="midnight"] h2,
+[data-theme="midnight"] h3,
+[data-theme="midnight"] h4,
+[data-theme="midnight"] label {
+  color: #FFFFFF;
+}
+
+/* Light themes: Deep solid black with crisp legibility */
+[data-theme="obsidiansilk"] p,
+[data-theme="obsidiansilk"] span,
+[data-theme="obsidiansilk"] td,
+[data-theme="obsidiansilk"] label,
+[data-theme="obsidiansilk"] input,
+[data-theme="luxurymarble"] p,
+[data-theme="luxurymarble"] span,
+[data-theme="luxurymarble"] td,
+[data-theme="luxurymarble"] label,
+[data-theme="oasis"] p,
+[data-theme="oasis"] span,
+[data-theme="sand"] p,
+[data-theme="sand"] span {
+  color: #000000;
+  font-weight: 500;
+}
+
+[data-theme="obsidiansilk"] h1,
+[data-theme="obsidiansilk"] h2,
+[data-theme="obsidiansilk"] h3,
+[data-theme="obsidiansilk"] h4,
+[data-theme="luxurymarble"] h1,
+[data-theme="luxurymarble"] h2,
+[data-theme="luxurymarble"] h3,
+[data-theme="luxurymarble"] h4 {
+  color: #000000;
+  font-weight: 700;
+}
+
+/* Brighten badges, pills, and high-visibility markers */
+.bg-nat-accent-2, 
+.bg-nat-accent-1 {
+  font-weight: 600;
+}

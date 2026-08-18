@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Champagne Gold Hexagon & Diamond Emblem -->
+    <path
+        android:fillColor="#C9A45C"
+        android:pathData="M54,28 L76,41 L76,67 L54,80 L32,67 L32,41 Z" />
+    <path
+        android:fillColor="#111111"
+        android:pathData="M54,34 L70,44 L70,64 L54,74 L38,64 L38,44 Z" />
+    <path
+        android:fillColor="#D8BA7A"
+        android:pathData="M54,40 L64,54 L54,68 L44,54 Z" />
+    <path
+        android:fillColor="#C9A45C"
+        android:pathData="M54,46 L60,54 L54,62 L48,54 Z" />
+</vector>

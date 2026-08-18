@@ -1,0 +1,8 @@
+{
+  "name": "Remix Oasis tasks",
+  "description": "The All-in-One Life \u0026 Productivity Dashboard",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

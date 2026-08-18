@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Obsidian Élite Palette -->
+    <color name="obsidian_primary">#111111</color>
+    <color name="obsidian_surface">#1A1A1A</color>
+    <color name="warm_ivory">#F7F3EA</color>
+    <color name="champagne_gold">#C9A45C</color>
+    <color name="gold_accent_light">#D8BA7A</color>
+    <color name="gold_accent_dark">#8E6F33</color>
+    <color name="ivory_card">#EFE8DA</color>
+    <color name="ivory_card_subtle">#FAF7F0</color>
+    <color name="gold_border">#61C9A45C</color>
+</resources>
