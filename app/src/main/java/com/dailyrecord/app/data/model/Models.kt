@@ -91,7 +91,7 @@ enum class MoodType {
 }
 
 data class BackupData(
-    val version: String = "1.0",
+    val version: String = "1.1",
     val exportedAt: String = "",
     val goals: List<com.dailyrecord.app.data.local.entity.GoalEntity> = emptyList(),
     val projects: List<com.dailyrecord.app.data.local.entity.ProjectEntity> = emptyList(),
@@ -103,5 +103,6 @@ data class BackupData(
     val timeLogs: List<com.dailyrecord.app.data.local.entity.TimeLogEntity> = emptyList(),
     val dailyJournals: List<com.dailyrecord.app.data.local.entity.DailyJournalEntity> = emptyList(),
     val weeklyReviews: List<com.dailyrecord.app.data.local.entity.WeeklyReviewEntity> = emptyList(),
-    val scratchpadNotes: List<com.dailyrecord.app.data.local.entity.ScratchpadEntity> = emptyList()
+    val scratchpadNotes: List<com.dailyrecord.app.data.local.entity.ScratchpadEntity> = emptyList(),
+    val settings: List<com.dailyrecord.app.data.local.entity.AppSettingEntity> = emptyList()
 )
