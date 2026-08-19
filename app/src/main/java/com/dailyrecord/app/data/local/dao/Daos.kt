@@ -81,6 +81,7 @@ interface TimeLogDao {
 interface DailyJournalDao {
     @Query("SELECT * FROM daily_journals ORDER BY date DESC") fun getAllJournals(): Flow<List<DailyJournalEntity>>
     @Query("SELECT * FROM daily_journals WHERE date = :date") fun getJournalForDate(date: String): Flow<DailyJournalEntity?>
+    @Query("SELECT * FROM daily_journals WHERE date = :date") suspend fun getJournalForDateOnce(date: String): DailyJournalEntity?
     @Insert(onConflict = OnConflictStrategy.REPLACE) suspend fun insertOrUpdate(entry: DailyJournalEntity)
     @Insert(onConflict = OnConflictStrategy.REPLACE) suspend fun insertAll(entries: List<DailyJournalEntity>)
     @Query("DELETE FROM daily_journals WHERE date = :date") suspend fun deleteJournalByDate(date: String)
