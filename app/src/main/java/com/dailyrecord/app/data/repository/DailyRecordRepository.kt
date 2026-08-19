@@ -69,6 +69,13 @@ class DailyRecordRepository(private val db: DailyRecordDatabase) {
     val allJournals: Flow<List<DailyJournalEntity>> = db.dailyJournalDao().getAllJournals()
     fun getJournalForDate(date: String): Flow<DailyJournalEntity?> = db.dailyJournalDao().getJournalForDate(date)
     suspend fun saveDailyJournal(journal: DailyJournalEntity) = db.dailyJournalDao().insertOrUpdate(journal)
+    suspend fun updateDailyJournal(date: String, update: (DailyJournalEntity) -> DailyJournalEntity) {
+        db.withTransaction {
+            val current = db.dailyJournalDao().getJournalForDateOnce(date)
+                ?: DailyJournalEntity(date = date)
+            db.dailyJournalDao().insertOrUpdate(update(current))
+        }
+    }
     suspend fun deleteJournal(date: String) = db.dailyJournalDao().deleteJournalByDate(date)
 
     // Weekly Reviews
@@ -147,8 +154,6 @@ class DailyRecordRepository(private val db: DailyRecordDatabase) {
             if (!isCurrentBackup && !isLegacyBackup) return false
 
             db.withTransaction {
-                // Restore means replace, not merge. This prevents stale records
-                // that are absent from the backup from surviving the restore.
                 db.goalDao().clearAll()
                 db.projectDao().clearAll()
                 db.taskDao().clearAll()
@@ -175,14 +180,11 @@ class DailyRecordRepository(private val db: DailyRecordDatabase) {
                 if (data.scratchpadNotes.orEmpty().isNotEmpty()) db.scratchpadDao().insertAll(data.scratchpadNotes.orEmpty())
 
                 if (isCurrentBackup) {
-                    if (data.settings.orEmpty().isNotEmpty()) {
-                        db.settingDao().insertAll(data.settings.orEmpty())
-                    }
+                    if (data.settings.orEmpty().isNotEmpty()) db.settingDao().insertAll(data.settings.orEmpty())
                 } else if (existingSettings.isNotEmpty()) {
                     db.settingDao().insertAll(existingSettings)
                 }
             }
-
             true
         } catch (e: Exception) {
             e.printStackTrace()
