@@ -1,5 +1,6 @@
 package com.dailyrecord.app.data.repository
 
+import androidx.room.withTransaction
 import com.dailyrecord.app.data.local.DailyRecordDatabase
 import com.dailyrecord.app.data.local.entity.*
 import com.dailyrecord.app.data.model.*
@@ -108,7 +109,7 @@ class DailyRecordRepository(private val db: DailyRecordDatabase) {
     // JSON Export
     suspend fun exportAllDataJson(): String {
         val backup = BackupData(
-            version = "1.0",
+            version = "1.1",
             exportedAt = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US).format(Date()),
             goals = db.goalDao().getAllGoals().first(),
             projects = db.projectDao().getAllProjects().first(),
@@ -120,26 +121,68 @@ class DailyRecordRepository(private val db: DailyRecordDatabase) {
             timeLogs = db.timeLogDao().getAllTimeLogs().first(),
             dailyJournals = db.dailyJournalDao().getAllJournals().first(),
             weeklyReviews = db.weeklyReviewDao().getAllWeeklyReviews().first(),
-            scratchpadNotes = db.scratchpadDao().getAllNotes().first()
+            scratchpadNotes = db.scratchpadDao().getAllNotes().first(),
+            settings = db.settingDao().getAllSettings().first()
         )
         return gson.toJson(backup)
     }
 
-    // JSON Import
+    /**
+     * Replaces the local database from a backup as one atomic Room transaction.
+     * If any insert fails, Room rolls the entire restore back and the existing
+     * database remains unchanged.
+     *
+     * Version 1.0 backups did not contain settings, so existing settings are
+     * preserved when importing those older backups.
+     */
     suspend fun importAllDataJson(jsonString: String): Boolean {
         return try {
             val data = gson.fromJson(jsonString, BackupData::class.java)
-            if (data.goals.isNotEmpty()) db.goalDao().insertAll(data.goals)
-            if (data.projects.isNotEmpty()) db.projectDao().insertAll(data.projects)
-            if (data.tasks.isNotEmpty()) db.taskDao().insertAll(data.tasks)
-            if (data.habitDefs.isNotEmpty()) db.habitDao().insertAllDefinitions(data.habitDefs)
-            if (data.habitDays.isNotEmpty()) db.habitDao().insertAllHabitDays(data.habitDays)
-            if (data.transactions.isNotEmpty()) db.transactionDao().insertAll(data.transactions)
-            if (data.mediaLogs.isNotEmpty()) db.mediaLogDao().insertAll(data.mediaLogs)
-            if (data.timeLogs.isNotEmpty()) db.timeLogDao().insertAll(data.timeLogs)
-            if (data.dailyJournals.isNotEmpty()) db.dailyJournalDao().insertAll(data.dailyJournals)
-            if (data.weeklyReviews.isNotEmpty()) db.weeklyReviewDao().insertAll(data.weeklyReviews)
-            if (data.scratchpadNotes.isNotEmpty()) db.scratchpadDao().insertAll(data.scratchpadNotes)
+                ?: return false
+
+            val existingSettings = db.settingDao().getAllSettings().first()
+            val isCurrentBackup = data.version == "1.1"
+            val isLegacyBackup = data.version == "1.0"
+
+            if (!isCurrentBackup && !isLegacyBackup) return false
+
+            db.withTransaction {
+                // Restore means replace, not merge. This prevents stale records
+                // that are absent from the backup from surviving the restore.
+                db.goalDao().clearAll()
+                db.projectDao().clearAll()
+                db.taskDao().clearAll()
+                db.habitDao().clearDefinitions()
+                db.habitDao().clearHabitDays()
+                db.transactionDao().clearAll()
+                db.mediaLogDao().clearAll()
+                db.timeLogDao().clearAll()
+                db.dailyJournalDao().clearAll()
+                db.weeklyReviewDao().clearAll()
+                db.scratchpadDao().clearAll()
+                db.settingDao().clearAll()
+
+                if (data.goals.orEmpty().isNotEmpty()) db.goalDao().insertAll(data.goals.orEmpty())
+                if (data.projects.orEmpty().isNotEmpty()) db.projectDao().insertAll(data.projects.orEmpty())
+                if (data.tasks.orEmpty().isNotEmpty()) db.taskDao().insertAll(data.tasks.orEmpty())
+                if (data.habitDefs.orEmpty().isNotEmpty()) db.habitDao().insertAllDefinitions(data.habitDefs.orEmpty())
+                if (data.habitDays.orEmpty().isNotEmpty()) db.habitDao().insertAllHabitDays(data.habitDays.orEmpty())
+                if (data.transactions.orEmpty().isNotEmpty()) db.transactionDao().insertAll(data.transactions.orEmpty())
+                if (data.mediaLogs.orEmpty().isNotEmpty()) db.mediaLogDao().insertAll(data.mediaLogs.orEmpty())
+                if (data.timeLogs.orEmpty().isNotEmpty()) db.timeLogDao().insertAll(data.timeLogs.orEmpty())
+                if (data.dailyJournals.orEmpty().isNotEmpty()) db.dailyJournalDao().insertAll(data.dailyJournals.orEmpty())
+                if (data.weeklyReviews.orEmpty().isNotEmpty()) db.weeklyReviewDao().insertAll(data.weeklyReviews.orEmpty())
+                if (data.scratchpadNotes.orEmpty().isNotEmpty()) db.scratchpadDao().insertAll(data.scratchpadNotes.orEmpty())
+
+                if (isCurrentBackup) {
+                    if (data.settings.orEmpty().isNotEmpty()) {
+                        db.settingDao().insertAll(data.settings.orEmpty())
+                    }
+                } else if (existingSettings.isNotEmpty()) {
+                    db.settingDao().insertAll(existingSettings)
+                }
+            }
+
             true
         } catch (e: Exception) {
             e.printStackTrace()
@@ -149,16 +192,19 @@ class DailyRecordRepository(private val db: DailyRecordDatabase) {
 
     // Clear all data
     suspend fun clearAllData() {
-        db.goalDao().clearAll()
-        db.projectDao().clearAll()
-        db.taskDao().clearAll()
-        db.habitDao().clearDefinitions()
-        db.habitDao().clearHabitDays()
-        db.transactionDao().clearAll()
-        db.timeLogDao().clearAll()
-        db.dailyJournalDao().clearAll()
-        db.weeklyReviewDao().clearAll()
-        db.scratchpadDao().clearAll()
-        db.mediaLogDao().clearAll()
+        db.withTransaction {
+            db.goalDao().clearAll()
+            db.projectDao().clearAll()
+            db.taskDao().clearAll()
+            db.habitDao().clearDefinitions()
+            db.habitDao().clearHabitDays()
+            db.transactionDao().clearAll()
+            db.timeLogDao().clearAll()
+            db.dailyJournalDao().clearAll()
+            db.weeklyReviewDao().clearAll()
+            db.scratchpadDao().clearAll()
+            db.mediaLogDao().clearAll()
+            db.settingDao().clearAll()
+        }
     }
 }
