@@ -104,5 +104,5 @@ data class BackupData(
     val dailyJournals: List<com.dailyrecord.app.data.local.entity.DailyJournalEntity> = emptyList(),
     val weeklyReviews: List<com.dailyrecord.app.data.local.entity.WeeklyReviewEntity> = emptyList(),
     val scratchpadNotes: List<com.dailyrecord.app.data.local.entity.ScratchpadEntity> = emptyList(),
-    val settings: List<com.dailyrecord.app.data.local.entity.AppSettingEntity> = emptyList()
+    val settings: List<com.dailyrecord.app.data.local.entity.SettingEntity> = emptyList()
 )
