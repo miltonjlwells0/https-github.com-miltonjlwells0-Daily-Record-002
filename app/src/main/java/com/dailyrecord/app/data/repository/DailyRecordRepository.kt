@@ -42,15 +42,22 @@ class DailyRecordRepository(private val db: DailyRecordDatabase) {
     fun getHabitDay(date: String): Flow<HabitDayEntity?> = db.habitDao().getHabitDay(date)
     suspend fun insertHabitDef(def: HabitDefEntity) = db.habitDao().insertDefinition(def)
     suspend fun deleteHabitDef(id: String) = db.habitDao().deleteDefinitionById(id)
+
+    /**
+     * Reads and toggles a habit inside one Room transaction so two rapid taps
+     * cannot overwrite one another using stale Flow state.
+     */
     suspend fun toggleHabit(date: String, habitId: String) {
-        val currentDay = db.habitDao().getHabitDay(date).first()
-        val currentCompleted = currentDay?.completedHabitIds ?: emptyList()
-        val newCompleted = if (currentCompleted.contains(habitId)) {
-            currentCompleted.filter { it != habitId }
-        } else {
-            currentCompleted + habitId
+        db.withTransaction {
+            val currentDay = db.habitDao().getHabitDay(date).first()
+            val currentCompleted = currentDay?.completedHabitIds ?: emptyList()
+            val newCompleted = if (currentCompleted.contains(habitId)) {
+                currentCompleted.filter { it != habitId }
+            } else {
+                currentCompleted + habitId
+            }
+            db.habitDao().insertHabitDay(HabitDayEntity(date, newCompleted))
         }
-        db.habitDao().insertHabitDay(HabitDayEntity(date, newCompleted))
     }
 
     // Transactions
@@ -89,6 +96,8 @@ class DailyRecordRepository(private val db: DailyRecordDatabase) {
     suspend fun insertScratchpadNote(note: ScratchpadEntity) = db.scratchpadDao().insertNote(note)
     suspend fun updateScratchpadNote(note: ScratchpadEntity) = db.scratchpadDao().updateNote(note)
     suspend fun deleteScratchpadNote(id: String) = db.scratchpadDao().deleteNoteById(id)
+
+    /** Converts a note into a task atomically so the note is not lost if task creation fails. */
     suspend fun convertNoteToTask(noteId: String, taskName: String, priority: Priority) {
         val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
         val task = TaskEntity(
@@ -99,8 +108,10 @@ class DailyRecordRepository(private val db: DailyRecordDatabase) {
             status = TaskStatus.ToDo,
             projectId = null
         )
-        insertTask(task)
-        deleteScratchpadNote(noteId)
+        db.withTransaction {
+            db.taskDao().insertTask(task)
+            db.scratchpadDao().deleteNoteById(noteId)
+        }
     }
 
     // Media Logs
